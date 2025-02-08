@@ -26,4 +26,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Clint-reports", UserSchema);
+module.exports = mongoose.model("clint-reports", UserSchema);

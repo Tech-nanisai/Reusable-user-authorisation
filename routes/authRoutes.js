@@ -2,20 +2,20 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 
 dotenv.config();
 const router = express.Router();
 
 // Nodemailer transporter setup
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
 
 // User Registration API
 router.post("/register", async (req, res) => {
@@ -44,12 +44,12 @@ router.post("/register", async (req, res) => {
     const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     // Send Email (Optional)
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: newUser.email,
-      subject: "Welcome to Our App",
-      text: `Hello ${newUser.fullName}, Welcome to our application!`,
-    });
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: newUser.email,
+    //   subject: "Welcome to Our App",
+    //   text: `Hello ${newUser.fullName}, Welcome to our application!`,
+    // });
 
     res.status(201).json({ message: "User registered successfully", token });
 
