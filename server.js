@@ -1,3 +1,4 @@
+// backend/Server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -19,6 +20,10 @@ mongoose
 
 // Routes
 app.use("/", require("./routes/authRoutes"));
+
+app.get("/", (req, res) => {
+    res.send("🚀 User Authentication API is running...");
+  });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
